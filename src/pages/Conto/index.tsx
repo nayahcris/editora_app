@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { } from "react-bootstrap"
+import { Image } from "react-bootstrap"
 import api from '../../services/api'
 
 interface IConto {
@@ -29,6 +29,9 @@ const Conto: React.FC = () => {
                 < br/>
                 <h1> Conto </h1>
                 <br />
+                <Image src="src/pages/Conto/logoSG.jpeg" />
+                <br />
+
 
                         {
                                 conto.map( conto => (
