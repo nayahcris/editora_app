@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-
+import { } from '@kolpa/ar-ts'
 import { AFrameRenderer, Marker } from 'react-web-ar'
 
-class ReactArApp extends Component {
+class Conectese extends Component {
   render() {
     return (
       <AFrameRenderer
@@ -20,4 +20,6 @@ class ReactArApp extends Component {
   }
 }
 
-render(<ReactArApp />, document.getElementById('root'))
+render(<Conectese />, document.getElementById('root'))
+
+export default Conectese
