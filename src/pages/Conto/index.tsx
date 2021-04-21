@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import { Image } from "react-bootstrap"
+import React, {useState, useEffect} from "react"
+import { Image, Button } from "react-bootstrap"
 import api from '../../services/api'
 
 interface IConto {
@@ -28,6 +28,8 @@ const Conto: React.FC = () => {
             <div className="container">
                 < br/>
                 <h1> Conto </h1>
+                <br />
+                <Button className="text-rigth">LIGAR A RA</Button>
                 <br />
                 <Image src="src/pages/Conto/logoSG.jpeg" />
                 <br />
