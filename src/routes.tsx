@@ -1,10 +1,12 @@
-import React from "react";
+import React from 'react'
+//import ReactDOM from 'react-dom'
 import {Switch, Route} from 'react-router-dom'
 import Home from '../src/pages/Home'
 import Tasks from '../src/pages/Tasks'
 import Conto from "./pages/Conto"
 import Contos from "./pages/Contos"
-import Conectese from './pages/Conectese/index'
+import Conectese from './pages/Conectese'
+
 
 
 const Routes: React.FC = () => {

@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import {Table, Button} from "react-bootstrap"
+import React, {useState, useEffect} from "react"
+import {Table} from "react-bootstrap"
 import api from '../../services/api'
 
 interface IConto {
@@ -30,8 +30,6 @@ const Contos: React.FC = () => {
             <div className="container">
                 < br/>
                 <h1 className="text-center"> Contos </h1>
-                <br />
-                <Button className="text-rigth">LIGAR A RA</Button>
                 <br />
                 <Table striped bordered hover className="text-center">
                 <thead>
