@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { } from "react-bootstrap"
 import { DefaultXRControllers, ARCanvas, Interactive } from '@react-three/xr'
-import { Text } from '@react-three/drei'
+import { Text } from '@react-three/drei/'
 
 function Box({ color, size, scale, children, ...rest }: any) {
   return (

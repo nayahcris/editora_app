@@ -24,6 +24,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-three-fiber": "^6.0.13",
+    "react-web-ar": "^1.0.0-beta0",
     "react-xr": "^1.1.0",
     "three": "^0.127.0",
     "troika-3d-text": "^0.40.0",
