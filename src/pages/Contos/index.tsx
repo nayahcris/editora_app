@@ -1,26 +1,17 @@
 import React, {useState, useEffect} from "react"
 import {Table} from "react-bootstrap"
 import api from '../../services/api'
-
-interface IConto {
-    _idConto: number;
-    _nomeConto: string;
-    _registroISBN: string;
-    _autor: string;
-    _conteudo: Text;
-    _dataCriacao: Date;
-    _dataUpdate: Date;
-}
+import IConto from '../../interfaces/IConto'
 
 const Contos: React.FC = () => {
 
     const [conto, setConto] = useState<IConto[]>([])
 
     useEffect(() => {
-        loadConto()
+        loadContos()
     }, [])
 
-    async function loadConto(){
+    async function loadContos(){
         const response = await api.get('/contos')
         console.log(response)
         setConto(response.data)
@@ -35,8 +26,10 @@ const Contos: React.FC = () => {
                 <thead>
                     <tr>
                         <th>TÍTULO</th>
+                        <th>NÚMERO REVISTA</th>
                         <th>REGISTRO ISBN</th>
                         <th>AUTOR</th>
+                        <th>SINOPSE</th>
                         <th>DATA DA POSTAGEM</th>
                         <th>DATA DA ATUALIZAÇÃO</th>
                     </tr>
@@ -44,11 +37,13 @@ const Contos: React.FC = () => {
                 <tbody>
 
                         {
-                                conto.map( conto => (
+                                conto.map( (conto, _numeroRevista )=> (
                                 <tr key={conto._idConto}>
                                     <td>{conto._nomeConto}</td>
+                                    <td>{conto._numeroRevista._numeroRevista}</td>
                                     <td>{conto._registroISBN}</td>
                                     <td>{conto._autor}</td>
+                                    <td>{conto._sinopse}</td>
                                     <td>{conto._dataCriacao}</td>
                                     <td>{conto._dataUpdate}</td>
                                 </tr>
