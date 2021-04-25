@@ -1,30 +1,37 @@
 /* eslint-disable */
 import React, {useState, useEffect} from "react"
 import { Image, Button } from "react-bootstrap"
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams} from 'react-router-dom'
 import api from '../../services/api'
 import IConto from '../../interfaces/IConto'
 import { } from './logoSG.jpeg'
 
 const Conto: React.FC = () => {
-
-    const [conto, setConto] = useState<IConto[]>([])
+    
     const history = useHistory()
-   
+    const { _idConto } = useParams <{ _idConto: string }>()
+    const [conto, setConto] = useState<IConto>()
+
+    
     function goToRa(){
-        history.push("/webAr")
+      history.push("/webAr")
+    }
+    function voltar() {
+        history.goBack()
     }
 
     useEffect(() => {
-        loadContos()
-    }, [])
+        findConto()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+     }, [_idConto])
 
-    async function loadContos(){
-        const response = await api.get('/contos')
+    async function findConto() {
+
+        const response = await api.get<IConto>(`/contos/${_idConto}`)
         console.log(response)
         setConto(response.data)
-    }
 
+    }
     return (
             <div className="container">
                 < br/>
@@ -34,20 +41,22 @@ const Conto: React.FC = () => {
                 <Button className="component-right" onClick={goToRa}>LIGAR A RA</Button>
                 <br />
                 <br />
+                <Button className="component-right" onClick={voltar}>VOLTAR</Button>
+                <br />
                 <br />
                 <Image src="./logoSG.jpeg" />
                 <br />
 
 
                         {
-                               conto.map( (conto, _numeroRevista )=> (
-                               <tr key={conto._idConto}>
-                                    <p  className="text-center">Nome do conto: {conto._nomeConto}</p>
-                                    <p className="text-right">Registro ISBN: {conto._registroISBN}</p>
-                                    <p className="text-right">Autor: {conto._autor}</p>
-                                    <p className="text-justify">{conto._conteudo}</p>
+                             
+                               <tr>
+                                    <p  className="text-center">Nome do conto: {conto?._nomeConto}</p>
+                                    <p className="text-right">Registro ISBN: {conto?._registroISBN}</p>
+                                    <p className="text-right">Autor: {conto?._autor}</p>
+                                    <p className="text-justify">{conto?._conteudo}</p>
                                 </tr>
-                                 ))
+                             
                         }
 
              </div>

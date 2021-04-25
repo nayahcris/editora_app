@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from "react"
-import {Table} from "react-bootstrap"
+import {Table, Button} from "react-bootstrap"
+import { useHistory } from 'react-router-dom'
 import formatDate from '../../functions/formatDate'
 import api from '../../services/api'
 import IConto from '../../interfaces/IConto'
 
 const Contos: React.FC = () => {
 
+    const history = useHistory()
     const [conto, setConto] = useState<IConto[]>([])
 
     useEffect(() => {
@@ -16,6 +18,10 @@ const Contos: React.FC = () => {
         const response = await api.get('/contos')
         console.log(response)
         setConto(response.data)
+    }
+
+    function viewConto(_idConto: number) {
+        history.push(`/contos/${_idConto}`)
     }
 
 
@@ -34,6 +40,7 @@ const Contos: React.FC = () => {
                         <th>SINOPSE</th>
                         <th>DATA DA POSTAGEM</th>
                         <th>DATA DA ATUALIZAÇÃO</th>
+                        <th>AÇÕES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,6 +55,9 @@ const Contos: React.FC = () => {
                                     <td className="text-justify">{conto._sinopse}</td>
                                     <td>{formatDate(conto._dataCriacao)}</td>
                                     <td>{formatDate(conto._dataUpdate)}</td>
+                                    <td>
+                                        <Button size="sm" variant="info" onClick={() => viewConto(conto._idConto)}>Visualizar</Button>{' '}
+                                    </td>
                                 </tr>
                                  ))
                         }

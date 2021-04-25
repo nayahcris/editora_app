@@ -12,9 +12,7 @@ const Header: React.FC = () => {
             <Nav className="mr-auto">
             <Nav.Item as ={Link} className="nav-link" to ="/">Inicio</Nav.Item>
             <Nav.Item as ={Link} className="nav-link" to ="/contos">Contos</Nav.Item>
-            <Nav.Item as ={Link} className="nav-link" to ="/conto">Conto</Nav.Item>
             <Nav.Item as={Link} className="nav-link" to ="/revistas">Revistas</Nav.Item>
-            <Nav.Item as ={Link} className="nav-link" to ="/webAr">WEB AR</Nav.Item>
         </Nav>
         </Navbar.Collapse>
         </Navbar>
