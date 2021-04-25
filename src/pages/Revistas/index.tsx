@@ -1,7 +1,9 @@
+/* eslint-disable */
 import React, {useState, useEffect} from "react"
 import {Table} from "react-bootstrap"
 import api from '../../services/api'
 import IRevista from '../../interfaces/IRevista'
+import IConto from '../../interfaces/IConto'
 
 const Revista: React.FC = () => {
 
@@ -17,10 +19,22 @@ const Revista: React.FC = () => {
         setRevista(response.data)
     }
 
+    const [conto, setConto] = useState<IConto[]>([])
+
+    useEffect(() => {
+        loadContos()
+    }, [])
+
+    async function loadContos(){
+        const response = await api.get('/contos')
+        console.log(response)
+        setConto(response.data)
+    }
+
     return (
             <div className="container">
                 < br/>
-                <h1 className="text-center"> Contos </h1>
+                <h1 className="text-center"> Revistas </h1>
                 <br />
                 <Table striped bordered hover className="text-center">
                 <thead>
@@ -33,7 +47,7 @@ const Revista: React.FC = () => {
                 <tbody>
 
                         {
-                                revista.map( (revista)=> (
+                                revista.map((revista)=> (
                                 <tr key={revista._idRevista}>
                                     <td>{revista._idRevista}</td>
                                     <td>{revista._numeroRevista}</td>

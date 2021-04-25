@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react"
 import {Table} from "react-bootstrap"
+import formatDate from '../../functions/formatDate'
 import api from '../../services/api'
 import IConto from '../../interfaces/IConto'
 
@@ -16,6 +17,7 @@ const Contos: React.FC = () => {
         console.log(response)
         setConto(response.data)
     }
+
 
     return (
             <div className="container">
@@ -43,9 +45,9 @@ const Contos: React.FC = () => {
                                     <td>{conto._numeroRevista._numeroRevista}</td>
                                     <td>{conto._registroISBN}</td>
                                     <td>{conto._autor}</td>
-                                    <td>{conto._sinopse}</td>
-                                    <td>{conto._dataCriacao}</td>
-                                    <td>{conto._dataUpdate}</td>
+                                    <td className="text-justify">{conto._sinopse}</td>
+                                    <td>{formatDate(conto._dataCriacao)}</td>
+                                    <td>{formatDate(conto._dataUpdate)}</td>
                                 </tr>
                                  ))
                         }
