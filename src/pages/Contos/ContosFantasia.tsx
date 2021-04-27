@@ -24,25 +24,14 @@ const Contos: React.FC = () => {
         history.push(`/contos/${_idConto}`)
     }
 
-
-    function mostraContosFantasia() {
-        history.push('/contosFantasia')
-    }
-
-    function mostraContosFiccaoCientifica() {
-        history.push('/contosScifi')
-    }
-    
+    const contosFantasia = conto.filter(conto => conto._numeroRevista._generoRevista === "Fantasia");
 
     return (
             <div className="container">
                 < br/>
-                <h1 className="text-center"> Contos </h1>
+                <h1 className="text-center"> Contos Gênero Fantasia </h1>
                 <br />
-                <Button variant="info" onClick={mostraContosFantasia}>Filtrar pelo Gênero Fantasia</Button>
-                <br />
-                <br />
-                <Button variant="info" onClick={mostraContosFiccaoCientifica}>Filtrar pelo Gênero Ficção Ciêntifica</Button>
+
                 <Table striped bordered hover className="text-center">
                 <thead>
                     <tr>
@@ -59,17 +48,17 @@ const Contos: React.FC = () => {
                 <tbody>
 
                         {
-                                conto.map( (conto, _numeroRevista )=> (
-                                <tr key={conto._idConto}>
-                                    <td>{conto._nomeConto}</td>
-                                    <td>{conto._numeroRevista._numeroRevista}</td>
-                                    <td>{conto._registroISBN}</td>
-                                    <td>{conto._autor}</td>
-                                    <td className="text-justify">{conto._sinopse}</td>
-                                    <td>{formatDate(conto._dataCriacao)}</td>
-                                    <td>{formatDate(conto._dataUpdate)}</td>
+                                contosFantasia.map( (contosFantasia, _numeroRevista )=> (
+                                <tr key={contosFantasia._idConto}>
+                                    <td>{contosFantasia._nomeConto}</td>
+                                    <td>{contosFantasia._numeroRevista._numeroRevista}</td>
+                                    <td>{contosFantasia._registroISBN}</td>
+                                    <td>{contosFantasia._autor}</td>
+                                    <td className="text-justify">{contosFantasia._sinopse}</td>
+                                    <td>{formatDate(contosFantasia._dataCriacao)}</td>
+                                    <td>{formatDate(contosFantasia._dataUpdate)}</td>
                                     <td>
-                                        <Button size="sm" variant="info" onClick={() => viewConto(conto._idConto)}>Visualizar</Button>{' '}
+                                        <Button size="sm" variant="info" onClick={() => viewConto(contosFantasia._idConto)}>Visualizar</Button>{' '}
                                     </td>
                                 </tr>
                                  ))

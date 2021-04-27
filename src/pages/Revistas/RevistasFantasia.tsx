@@ -37,23 +37,14 @@ const Revista: React.FC = () => {
         setConto(response.data)
     }
    
-    function mostraRevistasFantasia() {
-        history.push('/revistasFantasia')
-    }
-
-    function mostraRevistasFiccaoCientifica() {
-        history.push('/revistasScifi')
-    }
+    const RevistasFantasia = revista.filter(revista => revista._generoRevista == "Fantasia");
+    
 
     return (
             <div className="container">
                 < br/>
-                <h1 className="text-center"> Revistas </h1>
+                <h1 className="text-center"> Revistas do gênero Fantasia</h1>
                 <br />
-                <Button variant="info" onClick={mostraRevistasFantasia}>Filtrar pelo Gênero Fantasia</Button>
-                <br />
-                <br />
-                <Button variant="info" onClick={mostraRevistasFiccaoCientifica}>Filtrar pelo Gênero Ficção Ciêntifica</Button>
                 <Table striped bordered hover className="text-center">
                 <thead>
                     <tr>
@@ -65,13 +56,13 @@ const Revista: React.FC = () => {
                 <tbody>
 
                         {
-                                revista.map((revista)=> (
-                                <tr key={revista._idRevista}>
-                                    <td>{revista._idRevista}</td>
-                                    <td>{revista._numeroRevista}</td>
-                                    <td>{revista._generoRevista}</td>
+                                RevistasFantasia.map((RevistasFantasia)=> (
+                                <tr key={RevistasFantasia._idRevista}>
+                                    <td>{RevistasFantasia._idRevista}</td>
+                                    <td>{RevistasFantasia._numeroRevista}</td>
+                                    <td>{RevistasFantasia._generoRevista}</td>
                                     <td>
-                                        <Button size="sm" variant="info" onClick={() => viewRevista(revista._idRevista)}>Visualizar</Button>{' '}
+                                        <Button size="sm" variant="info" onClick={() => viewRevista(RevistasFantasia._idRevista)}>Visualizar</Button>{' '}
                                     </td>
                                 </tr>
                                  ))
