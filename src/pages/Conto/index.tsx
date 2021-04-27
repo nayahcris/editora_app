@@ -17,7 +17,7 @@ const Conto: React.FC = () => {
       history.push("/webAr")
     }
     function voltar() {
-        history.goBack()
+        history.push('/contos')
     }
 
     useEffect(() => {

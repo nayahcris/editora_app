@@ -3,6 +3,7 @@ import { AFrameRenderer, Marker } from '../../components'
 import { Modal, Button } from 'react-bootstrap'
 import { useHistory } from 'react-router-dom'
 import React from 'react'
+import { Entity } from 'aframe-react'
 
 
 
@@ -19,19 +20,15 @@ export default function ReactArApp (){
             </Modal.Header>
 
             <Modal.Body>
-                <AFrameRenderer inherent={true}>
-                  <Marker parameters={{ preset: "hiro" }}>
-                    <a-box color="green" position="0 0.09 0" scale="0.4 0.8 0.8">
-                      <a-animation
-                        attribute="rotation"
-                        to="360 0 0"
-                        dur="2000"
-                        easing="linear"
-                        repeat="indefinite"
-                     />
-                   </a-box>
-                  </Marker>
-                </AFrameRenderer>
+            <AFrameRenderer inherent={true}> 
+               <Marker parameters={{ preset: "hiro" }}>
+                  <Entity
+                    geometry={{ primitive: "box" }}
+                    material={{ color: "red" }}
+                    position={{ x: 0, y: 0.03, z: 0 }}
+                  />
+              </Marker>
+            </AFrameRenderer>
             </Modal.Body>
 
             <Modal.Footer>

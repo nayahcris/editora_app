@@ -92,8 +92,9 @@ export default class AFrameRenderer extends Component {
 
   // Clear the rendering context
   // Fallback if <a-scene /> primitive fails to dispose the renderer
+  //ISSO PODE DAR ERRO
   componentWillUnmount = () => {
-   // this.renderer && this.renderer.dispose();
+  // this.renderer && this.renderer.dispose();
   };
 
   // Pass <a-scene /> reference as a prop. Useful for usage with aframe.io APIs
