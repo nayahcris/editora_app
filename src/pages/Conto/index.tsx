@@ -35,7 +35,7 @@ const Conto: React.FC = () => {
     return (
             <div className="container">
                 < br/>
-                <h1> Conto </h1>
+                <h1 className="text-center">{conto?._nomeConto}</h1>
                 <br />
                 <br />
                 <Button className="component-right" onClick={goToRa}>LIGAR A RA</Button>
@@ -44,21 +44,14 @@ const Conto: React.FC = () => {
                 <Button className="component-right" onClick={voltar}>VOLTAR</Button>
                 <br />
                 <br />
-                <Image src="./logoSG.jpeg" />
+                <Image src={`conto?._urlDaRa._urlDaRa`} />
                 <br />
-
-
-                        {
-                             
-                               <tr>
-                                    <p  className="text-center">Nome do conto: {conto?._nomeConto}</p>
-                                    <p className="text-right">Registro ISBN: {conto?._registroISBN}</p>
-                                    <p className="text-right">Autor: {conto?._autor}</p>
-                                    <p className="text-justify">{conto?._conteudo}</p>
-                                </tr>
-                             
-                        }
-
+                <p className="text-right">Registro ISBN: {conto?._registroISBN}</p>
+                <p className="text-right">Autor: {conto?._autor}</p>
+                <p className="text-right">Editor: {conto?._editor._nome}</p>
+                <p className="text-right">Designer: {conto?._designer._nome}</p>
+                <p className="text-right">Revisor: {conto?._revisor._nome}</p>
+                <p className="text-justify">{conto?._conteudo}</p>
              </div>
             )
 

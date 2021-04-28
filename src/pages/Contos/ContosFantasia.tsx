@@ -39,6 +39,9 @@ const Contos: React.FC = () => {
                         <th>NÚMERO REVISTA</th>
                         <th>REGISTRO ISBN</th>
                         <th>AUTOR</th>
+                        <th>EDITOR</th>
+                        <th>DESIGNER</th>
+                        <th>REVISOR</th>
                         <th>SINOPSE</th>
                         <th>DATA DA POSTAGEM</th>
                         <th>DATA DA ATUALIZAÇÃO</th>
@@ -54,6 +57,9 @@ const Contos: React.FC = () => {
                                     <td>{contosFantasia._numeroRevista._numeroRevista}</td>
                                     <td>{contosFantasia._registroISBN}</td>
                                     <td>{contosFantasia._autor}</td>
+                                    <td>{contosFantasia._editor._nome}</td>
+                                    <td>{contosFantasia._designer._nome}</td>
+                                    <td>{contosFantasia._revisor._nome}</td>
                                     <td className="text-justify">{contosFantasia._sinopse}</td>
                                     <td>{formatDate(contosFantasia._dataCriacao)}</td>
                                     <td>{formatDate(contosFantasia._dataUpdate)}</td>

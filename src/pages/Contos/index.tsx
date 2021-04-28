@@ -50,6 +50,9 @@ const Contos: React.FC = () => {
                         <th>NÚMERO REVISTA</th>
                         <th>REGISTRO ISBN</th>
                         <th>AUTOR</th>
+                        <th>EDITOR</th>
+                        <th>DESIGNER</th>
+                        <th>REVISOR</th>
                         <th>SINOPSE</th>
                         <th>DATA DA POSTAGEM</th>
                         <th>DATA DA ATUALIZAÇÃO</th>
@@ -59,12 +62,15 @@ const Contos: React.FC = () => {
                 <tbody>
 
                         {
-                                conto.map( (conto, _numeroRevista )=> (
+                                conto.map( (conto, _numeroRevista)=> (
                                 <tr key={conto._idConto}>
                                     <td>{conto._nomeConto}</td>
                                     <td>{conto._numeroRevista._numeroRevista}</td>
                                     <td>{conto._registroISBN}</td>
                                     <td>{conto._autor}</td>
+                                    <td>{conto._editor._nome}</td>
+                                    <td>{conto._designer._nome}</td>
+                                    <td>{conto._revisor._nome}</td>
                                     <td className="text-justify">{conto._sinopse}</td>
                                     <td>{formatDate(conto._dataCriacao)}</td>
                                     <td>{formatDate(conto._dataUpdate)}</td>
