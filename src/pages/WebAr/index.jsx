@@ -6,7 +6,6 @@ import React from 'react'
 import { Entity } from 'aframe-react'
 
 
-
 export default function ReactArApp (){
   const history = useHistory()
   function voltar() {
