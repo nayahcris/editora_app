@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, {useState, useEffect} from "react"
 import { Image, Button } from "react-bootstrap"
 import { useHistory, useParams} from 'react-router-dom'
@@ -51,10 +50,7 @@ const Conto: React.FC = () => {
                 <p className="text-right">Editor: {conto?._editor._nome}</p>
                 <p className="text-right">Designer: {conto?._designer._nome}</p>
                 <p className="text-right">Revisor: {conto?._revisor._nome}</p>
-                <p className="text-justify">{conto?._conteudo}</p>
-             </div>
+            </div>
             )
-
 }
-
 export default Conto

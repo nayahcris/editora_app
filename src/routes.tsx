@@ -1,5 +1,5 @@
+/* eslint-disable */
 import React from 'react'
-//import ReactDOM from 'react-dom'
 import {Switch, Route} from 'react-router-dom'
 import Home from '../src/pages/Home'
 import Tasks from '../src/pages/Tasks'
@@ -13,6 +13,7 @@ import RevistaFantasia from './pages/Revistas/RevistasFantasia'
 import RevistaScifi from './pages/Revistas/RevistasScifi'
 import Conectese from './pages/Conectese'
 import ReactArApp from './pages/WebAr'
+import EditorTexto from './pages/EditorTexto'
 
 
 
@@ -31,6 +32,7 @@ const Routes: React.FC = () => {
             <Route path="/revistasFantasia" exact component={RevistaFantasia} /> 
             <Route path="/revistasScifi" exact component={RevistaScifi} /> 
             <Route path="/webAr" component={ReactArApp} />   
+            <Route path="/editorTexto" component={EditorTexto} />  
         </Switch>
     )
 }
