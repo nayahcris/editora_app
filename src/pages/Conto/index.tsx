@@ -31,6 +31,7 @@ const Conto: React.FC = () => {
         setConto(response.data)
 
     }
+
     return (
             <div className="container">
                 < br/>
@@ -50,6 +51,7 @@ const Conto: React.FC = () => {
                 <p className="text-right">Editor: {conto?._editor._nome}</p>
                 <p className="text-right">Designer: {conto?._designer._nome}</p>
                 <p className="text-right">Revisor: {conto?._revisor._nome}</p>
+                <div>{conto?._conteudo}</div>
             </div>
             )
 }

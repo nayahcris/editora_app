@@ -1,8 +1,10 @@
 import React from 'react'
 import 'draft-js/dist/Draft.css'
-import {Editor, EditorState, RichUtils, getDefaultKeyBinding} from 'draft-js'
-import { Modal } from 'react-bootstrap'
+import {Editor, EditorState, RichUtils, getDefaultKeyBinding, convertFromRaw, convertToRaw} from 'draft-js'
+import { Button, Modal } from 'react-bootstrap'
 import { } from './index.css'
+import api from '../../services/api'
+import IConto from '../../interfaces/IConto'
 
 class EditorTexto extends React.Component {
   constructor(props) {
@@ -60,6 +62,7 @@ class EditorTexto extends React.Component {
     );
   }
 
+
   render() {
     const {editorState} = this.state;
 
@@ -72,12 +75,26 @@ class EditorTexto extends React.Component {
         className += ' RichEditor-hidePlaceholder';
       }
     }
+    
+    
+    const rawDraftContentState = JSON.stringify( convertToRaw(this.state.editorState.getCurrentContent()) );
+    const conteudos = convertFromRaw( JSON.parse( rawDraftContentState) );
 
-    return (
+    async function salvarTexto(){
+      const conteudo = IConto._conteudo;
+      const response = api.get<conteudo>(`/contos/1`)
+      console.log(rawDraftContentState)
+      console.log(conteudos)
+      console.log(response)
+      }
+      
+   
+      return (
       <Modal.Dialog>
             <Modal.Header closeButton>
-              <Modal.Title>EDITOR DE TEXTO</Modal.Title>
+              <Modal.Title className="text-center">EDITOR DE TEXTO</Modal.Title>
             </Modal.Header>
+            <Button onClick={salvarTexto}>Save</Button>
       <div className="RichEditor-root">
         <BlockStyleControls
           editorState={editorState}
@@ -95,7 +112,7 @@ class EditorTexto extends React.Component {
             handleKeyCommand={this.handleKeyCommand}
             keyBindingFn={this.mapKeyToEditorCommand}
             onChange={this.onChange}
-            placeholder="Tell a story..."
+            placeholder="Coloque o texo aqui..."
             ref="editor"
             spellCheck={true}
           />
@@ -105,6 +122,9 @@ class EditorTexto extends React.Component {
     );
   }
 }
+
+
+
 
 // Custom overrides for "code" style.
 const styleMap = {
@@ -137,7 +157,6 @@ class StyleButton extends React.Component {
     if (this.props.active) {
       className += ' RichEditor-activeButton';
     }
-
     return (
       <span className={className} onMouseDown={this.onToggle}>
         {this.props.label}
