@@ -14,6 +14,8 @@ import RevistaScifi from './pages/Revistas/RevistasScifi'
 import Conectese from './pages/Conectese'
 import ReactArApp from './pages/WebAr'
 import EditorTexto from './pages/EditorTexto'
+import Editor from './pages/Editor'
+import ContosForm from './pages/Contos/FormConto'
 
 
 
@@ -33,6 +35,8 @@ const Routes: React.FC = () => {
             <Route path="/revistasScifi" exact component={RevistaScifi} /> 
             <Route path="/webAr" component={ReactArApp} />   
             <Route path="/editorTexto" component={EditorTexto} />  
+            <Route path="/editores/:_idEditor" exact component={Editor} /> 
+            <Route path="/contosform/:_idConto" exact component={ContosForm}/>
         </Switch>
     )
 }

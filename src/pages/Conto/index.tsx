@@ -1,9 +1,11 @@
+/* eslint-disable */
 import React, {useState, useEffect} from "react"
 import { Image, Button } from "react-bootstrap"
 import { useHistory, useParams} from 'react-router-dom'
 import api from '../../services/api'
 import IConto from '../../interfaces/IConto'
 import { } from './logoSG.jpeg'
+import { convertFromHTML } from 'draft-js'
 
 const Conto: React.FC = () => {
     
@@ -29,8 +31,8 @@ const Conto: React.FC = () => {
         const response = await api.get<IConto>(`/contos/${_idConto}`)
         console.log(response)
         setConto(response.data)
-
     }
+
 
     return (
             <div className="container">
@@ -51,7 +53,7 @@ const Conto: React.FC = () => {
                 <p className="text-right">Editor: {conto?._editor._nome}</p>
                 <p className="text-right">Designer: {conto?._designer._nome}</p>
                 <p className="text-right">Revisor: {conto?._revisor._nome}</p>
-                <div>{conto?._conteudo}</div>
+                {conto?._conteudo}
             </div>
             )
 }

@@ -1,10 +1,11 @@
+/* eslint-disable */
 import React from 'react'
 import 'draft-js/dist/Draft.css'
 import {Editor, EditorState, RichUtils, getDefaultKeyBinding, convertFromRaw, convertToRaw} from 'draft-js'
 import { Button, Modal } from 'react-bootstrap'
 import { } from './index.css'
 import api from '../../services/api'
-import IConto from '../../interfaces/IConto'
+//import IConto from '../../interfaces/IConto'
 
 class EditorTexto extends React.Component {
   constructor(props) {
@@ -81,8 +82,7 @@ class EditorTexto extends React.Component {
     const conteudos = convertFromRaw( JSON.parse( rawDraftContentState) );
 
     async function salvarTexto(){
-      const conteudo = IConto._conteudo;
-      const response = api.get<conteudo>(`/contos/1`)
+      const response = api.put(`/contos/1`, conteudos)
       console.log(rawDraftContentState)
       console.log(conteudos)
       console.log(response)
