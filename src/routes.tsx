@@ -16,6 +16,7 @@ import ReactArApp from './pages/WebAr'
 import EditorTexto from './pages/EditorTexto'
 import Editor from './pages/Editor'
 import ContosForm from './pages/Contos/FormConto'
+import Task from './pages/Tasks/tasksform'
 
 
 
@@ -24,19 +25,20 @@ const Routes: React.FC = () => {
         <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/tarefas" exact component={Tasks} />
+            <Route path="/tarefas-cadastro" exact component={Task} />
             <Route path="/contos" exact component={Contos} />
             <Route path="/contos/:_idConto" exact component={Conto} />
-            <Route path="/contosFantasia" exact component={ContosFantasia} />
-            <Route path="/contosScifi" exact component={ContosScifi} />
+            <Route path="/contos-fantasia" exact component={ContosFantasia} />
+            <Route path="/contos-scifi" exact component={ContosScifi} />
             <Route path="/conectese" exact component={Conectese} />  
             <Route path="/revistas" exact component={Revistas} />  
             <Route path="/revistas/:_idRevista" exact component={Revista} />  
-            <Route path="/revistasFantasia" exact component={RevistaFantasia} /> 
-            <Route path="/revistasScifi" exact component={RevistaScifi} /> 
+            <Route path="/revistas-fantasia" exact component={RevistaFantasia} /> 
+            <Route path="/revistas-scifi" exact component={RevistaScifi} /> 
             <Route path="/webAr" component={ReactArApp} />   
-            <Route path="/editorTexto" component={EditorTexto} />  
+            <Route path="/editor-texto" component={EditorTexto} />  
             <Route path="/editores/:_idEditor" exact component={Editor} /> 
-            <Route path="/contosform/:_idConto" exact component={ContosForm}/>
+            <Route path="/contos-form" exact component={ContosForm}/>
         </Switch>
     )
 }

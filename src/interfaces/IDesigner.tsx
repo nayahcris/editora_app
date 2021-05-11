@@ -3,7 +3,6 @@ export default interface IDesigner{
     _nome: string;
     _nomeSocial: string;
     _genero: string;
-    _dataDeNascimento: Date;
     _email: string;
     _telefone: number;
     _whatsapp: number;

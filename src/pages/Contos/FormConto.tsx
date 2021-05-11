@@ -1,21 +1,69 @@
-import React, {useEffect, useState} from "react"
-import {useParams} from 'react-router-dom'
+/* eslint-disable */
+import React, { useState, useEffect, ChangeEvent } from 'react';
+import { useHistory, useParams } from 'react-router-dom' 
+import { Button, Form } from 'react-bootstrap';
 import api from '../../services/api'
-import IConto from '../../interfaces/IConto'
+import IContoForm from '../../interfaces/IContoForm'
 import IEditor from '../../interfaces/IEditor'
-import {Form, Button} from 'react-bootstrap'
-import IRevisor from "../../interfaces/IRevisor"
 
+const Task: React.FC = () => {
 
-
-const ContosForm: React.FC = () => {
-    
-    const { _idConto } = useParams <{ _idConto: string }>()
-    const [conto, setConto] = useState<IConto>()
+    const history = useHistory()
+    const { _idConto } = useParams<{ _idConto: string }>()
     const [editor, setEditor] = useState<IEditor[]>([])
-    const [revisor, setRevisor] = useState<IRevisor[]>([])
-    const [designer, setDesigner] = useState<IRevisor[]>([])
+    const [model, setModel] = useState<IContoForm>({
+        _nomeConto: '',
+        _registroISBN: '',
+        _autor: '',
+        _sinopse: '', 
+        _editor: {
+            _idEditor: 0
+        }
+    })
 
+    useEffect(() => {
+        if (_idConto !== undefined) {
+            findConto(_idConto)
+        }
+    }, [_idConto])
+
+    function updatedModel (e: ChangeEvent<HTMLInputElement>) {
+
+        setModel({
+            ...model,
+            [e.target.name]: e.target.value
+        })
+
+    }
+
+    async function onSubmit (e: ChangeEvent<HTMLFormElement>) {
+        e.preventDefault()
+
+        if (_idConto !== undefined) {
+        
+            const response = await api.put(`/contos/${_idConto}`, model)
+        } else {
+
+            const response = await api.post('/contos', model)
+        }
+        back()
+
+    }
+
+    async function findConto (_idConto: string) {
+        const response = await api.get(`contos/${_idConto}`)
+        setModel({
+            _nomeConto: response.data._nomeConto,
+            _registroISBN: response.data._registroISBN,
+            _autor: response.data._autor,
+            _sinopse: response.data._sinopse,
+            _editor: response.data._editor
+        })
+    }
+
+    function back () {
+        history.goBack()
+    }
 
     useEffect(() => {
         loadEditores()
@@ -27,81 +75,64 @@ const ContosForm: React.FC = () => {
         setEditor(response.data)
     }
 
-    useEffect(() => {
-        loadRevisores()
-    }, [])
-
-    async function loadRevisores(){
-        const response = await api.get('/revisores')
-        console.log(response)
-        setRevisor(response.data)
-    }
-
-
-    useEffect(() => {
-        loadDesigners()
-    }, [])
-
-    async function loadDesigners(){
-        const response = await api.get('/designers')
-        console.log(response)
-        setDesigner(response.data)
-    }
-
-    useEffect(() => {
-        findConto()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-     }, [_idConto])
-
-    async function findConto() {
-
-        const response = await api.get<IConto>(`/contos/${_idConto}`)
-        console.log(response)
-        setConto(response.data)
-    }
-
-    async function salvaConto() {
-
-        const response = await api.post<IConto>(`/contos`)
-        console.log(response)
-        setConto(response.data)
-    }
-
-    const nomeConto = conto?._nomeConto
-    const autorConto = conto?._autor
-    //const revistaConto = conto?._numeroRevista._numeroRevista
-
-    return <div className="container">
-                <h1 className="text-center">Edição de Conto</h1>
-
-                <Form>
-                    <Form.Group controlId="_nomeConto">
-                        <Form.Label>Nome do Conto</Form.Label>
-                        <Form.Control  placeholder={nomeConto}/>
+    return(
+        <div className="container">
+            <br/>
+            <div className="task-header">
+                <h3>New Task</h3>
+                <Button variant="dark" size="sm" onClick={back}>Voltar</Button>
+            </div>
+            <br/>
+            <div className="container">
+                <Form onSubmit={onSubmit}>
+                    <Form.Group>
+                        <Form.Label>Título</Form.Label>
+                        <Form.Control 
+                            type="text" 
+                            name="_nomeConto"
+                            value={model._nomeConto}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} 
+                        />
                     </Form.Group>
-                    <Form.Group controlId="_autor">
+
+                    <Form.Group>
                         <Form.Label>Autor</Form.Label>
-                        <Form.Control  placeholder={autorConto} />
+                        <Form.Control 
+                            type="text" 
+                            name="_autor"
+                            value={model._autor}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} 
+                        />
                     </Form.Group>
-                    <Form.Group controlId="_numeroRevista">
-                        <Form.Label>Revista</Form.Label>
-                        <Form.Control  placeholder={"NÚMERO DA REVISTA"} />
-                    </Form.Group>
-                    <Form.Group controlId="_idConto">
+
+                    <Form.Group>
                         <Form.Label>Registro ISBN</Form.Label>
-                        <Form.Control  placeholder={"REGISTRO ISNBN"} />
+                        <Form.Control 
+                            type="text" 
+                            name="_registroISBN"
+                            value={model._registroISBN}
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} 
+                        />
                     </Form.Group>
-                    <Form.Group controlId="_dataCriacao">
-                        <Form.Label>Data da Criação</Form.Label>
-                        <Form.Control type="date" />
+
+                    <Form.Group>
+                        <Form.Label>Sinopse</Form.Label>
+                        <Form.Control 
+                            as="textarea" 
+                            rows={3} 
+                            value={model._sinopse}
+                            name="_sinopse"
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} 
+                        />
                     </Form.Group>
-                    <Form.Group controlId="_dataUpdate">
-                        <Form.Label>Data da Atualização</Form.Label>
-                        <Form.Control type="date" />
-                    </Form.Group>
+
                     <Form.Group controlId="_idEditor">
                         <Form.Label>Editor</Form.Label>
-                        <Form.Control as="select">
+                        <Form.Control 
+                        as="select"
+                        name="Editor_idEditor"
+                        value={model._editor._idEditor}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} >
                         {
                             editor.map((editor, _idEditor) => 
                             <option>{editor._nome}</option>
@@ -109,38 +140,14 @@ const ContosForm: React.FC = () => {
                         }
                         </Form.Control>
                     </Form.Group>
-                    <Form.Group controlId="_idRevisor">
-                        <Form.Label>Revisor</Form.Label>
-                        <Form.Control as="select">
-                        {
-                            revisor.map((revisor, _idRevisor) => 
-                            <option>{revisor._nome}</option>
-                        )
-                        }
-                        </Form.Control>
-                        </Form.Group>
-                        <Form.Group controlId="_idEditor">
-                        <Form.Label>Designer</Form.Label>
-                        <Form.Control as="select">
-                        {
-                            designer.map((designer, _idDesigner) => 
-                            <option>{designer._nome}</option>
-                        )
-                        }
-                        </Form.Control>    
-                    </Form.Group>
-                    <Form.Group controlId="_sinopse">
-                        <Form.Label>Sinopse</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
-                    </Form.Group>
-                    <Form.Group controlId="_conteudo">
-                        <Form.Label>Conto</Form.Label>
-                        <Form.Control as="textarea" rows={5} />
-                    </Form.Group>
-                    </Form>
-                    <Button type="submit" onClick={salvaConto}>Salvar</Button>
-           </div>
 
+                    <Button variant="dark" type="submit">
+                        Salvar
+                    </Button>
+                </Form>
+            </div>
+        </div>
+    );
 }
 
-export default ContosForm
+export default Task;

@@ -50,7 +50,7 @@ const Conto: React.FC = () => {
                 <br />
                 <p className="text-right">Registro ISBN: {conto?._registroISBN}</p>
                 <p className="text-right">Autor: {conto?._autor}</p>
-                <p className="text-right">Editor: {conto?._editor._nome}</p>
+                <p className="text-right">Editor: {conto?._editor._idEditor}</p>
                 <p className="text-right">Designer: {conto?._designer._nome}</p>
                 <p className="text-right">Revisor: {conto?._revisor._nome}</p>
                 {conto?._conteudo}

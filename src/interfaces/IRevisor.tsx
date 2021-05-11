@@ -1,9 +1,8 @@
 export default interface IRevisor {
-    _idPessoa: 1,
+    _idPessoa: number,
     _nome: string;
     _nomeSocial: string;
     _genero: string;
-    _dataDeNascimento: Date;
     _email: string;
     _telefone: number;
     _whatsapp: number;
