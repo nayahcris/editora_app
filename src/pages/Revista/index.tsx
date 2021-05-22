@@ -67,7 +67,6 @@ const Revista: React.FC = () => {
                                 <p>Data da atualização: {formatDate(contos._dataUpdate)}</p>
                                 <p>Registro ISBN: {contos._registroISBN}</p>
                                 <p>Nome do Autor: {contos._autor}</p>
-                                <p className="text-justify">{contos._conteudo}</p>
                             </tr>
                                  ))
                     }

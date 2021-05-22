@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react'
 import {Switch, Route} from 'react-router-dom'
 import Home from '../src/pages/Home'
@@ -35,7 +34,7 @@ const Routes: React.FC = () => {
             <Route path="/revistas/:_idRevista" exact component={Revista} />  
             <Route path="/revistas-fantasia" exact component={RevistaFantasia} /> 
             <Route path="/revistas-scifi" exact component={RevistaScifi} /> 
-            <Route path="/webAr" component={ReactArApp} />   
+            <Route path="/web-ar" component={ReactArApp} />   
             <Route path="/editor-texto" component={EditorTexto} />  
             <Route path="/editores/:_idEditor" exact component={Editor} /> 
             <Route path="/contos-form" exact component={ContosForm}/>
@@ -43,4 +42,4 @@ const Routes: React.FC = () => {
     )
 }
 
-export default Routes;
+export default Routes

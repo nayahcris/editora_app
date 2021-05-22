@@ -1,24 +1,20 @@
 /* eslint-disable */
-import React, { useState, useEffect, ChangeEvent } from 'react';
+import React, { useState, useEffect, ChangeEvent } from 'react'
 import { useHistory, useParams } from 'react-router-dom' 
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap'
 import api from '../../services/api'
 import IContoForm from '../../interfaces/IContoForm'
 import IEditor from '../../interfaces/IEditor'
 
-const Task: React.FC = () => {
+const ContosForm: React.FC = () => {
 
     const history = useHistory()
     const { _idConto } = useParams<{ _idConto: string }>()
-    const [editor, setEditor] = useState<IEditor[]>([])
     const [model, setModel] = useState<IContoForm>({
         _nomeConto: '',
         _registroISBN: '',
         _autor: '',
-        _sinopse: '', 
-        _editor: {
-            _idEditor: 0
-        }
+        _sinopse: ''
     })
 
     useEffect(() => {
@@ -56,8 +52,7 @@ const Task: React.FC = () => {
             _nomeConto: response.data._nomeConto,
             _registroISBN: response.data._registroISBN,
             _autor: response.data._autor,
-            _sinopse: response.data._sinopse,
-            _editor: response.data._editor
+            _sinopse: response.data._sinopse
         })
     }
 
@@ -65,15 +60,11 @@ const Task: React.FC = () => {
         history.goBack()
     }
 
-    useEffect(() => {
-        loadEditores()
-    }, [])
-
-    async function loadEditores(){
-        const response = await api.get('/editores')
-        console.log(response)
-        setEditor(response.data)
+    
+    function goToNext () {
+        history.push('/editor-texto')
     }
+
 
     return(
         <div className="container">
@@ -126,23 +117,13 @@ const Task: React.FC = () => {
                         />
                     </Form.Group>
 
-                    <Form.Group controlId="_idEditor">
-                        <Form.Label>Editor</Form.Label>
-                        <Form.Control 
-                        as="select"
-                        name="Editor_idEditor"
-                        value={model._editor._idEditor}
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} >
-                        {
-                            editor.map((editor, _idEditor) => 
-                            <option>{editor._nome}</option>
-                        )
-                        }
-                        </Form.Control>
-                    </Form.Group>
 
                     <Button variant="dark" type="submit">
                         Salvar
+                    </Button> { }
+
+                    <Button variant="dark" onClick={goToNext}>
+                        Próxima Página
                     </Button>
                 </Form>
             </div>
@@ -150,4 +131,4 @@ const Task: React.FC = () => {
     );
 }
 
-export default Task;
+export default ContosForm

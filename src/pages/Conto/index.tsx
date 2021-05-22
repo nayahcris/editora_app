@@ -2,13 +2,21 @@
 import React, {useState, useEffect} from "react"
 import { Image, Button } from "react-bootstrap"
 import { useHistory, useParams} from 'react-router-dom'
+import { Viewer } from '@react-pdf-viewer/core'
+import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout'
+import { Worker } from '@react-pdf-viewer/core'
+import '@react-pdf-viewer/core/lib/styles/index.css'
+import '@react-pdf-viewer/default-layout/lib/styles/index.css'
 import api from '../../services/api'
 import IConto from '../../interfaces/IConto'
-import { } from './logoSG.jpeg'
-import { convertFromHTML } from 'draft-js'
+import logoSG from './logoSG.jpeg'
+//import * as viewPdf from './EscuridaoGelida.pdf'
+
 
 const Conto: React.FC = () => {
-    
+
+    const defaultLayoutPluginInstance = defaultLayoutPlugin();
+
     const history = useHistory()
     const { _idConto } = useParams <{ _idConto: string }>()
     const [conto, setConto] = useState<IConto>()
@@ -46,14 +54,18 @@ const Conto: React.FC = () => {
                 <Button className="component-right" onClick={voltar}>VOLTAR</Button>
                 <br />
                 <br />
-                <Image src={`conto?._urlDaRa._urlDaRa`} />
+                <Image src={logoSG} />
                 <br />
                 <p className="text-right">Registro ISBN: {conto?._registroISBN}</p>
                 <p className="text-right">Autor: {conto?._autor}</p>
                 <p className="text-right">Editor: {conto?._editor._idEditor}</p>
                 <p className="text-right">Designer: {conto?._designer._nome}</p>
                 <p className="text-right">Revisor: {conto?._revisor._nome}</p>
-                {conto?._conteudo}
+                <div className='pdf-container'>
+                <Viewer fileUrl={require('./EscuridaoGelida.pdf')} 
+                    plugins={[defaultLayoutPluginInstance]} />
+                </div>
+                
             </div>
             )
 }

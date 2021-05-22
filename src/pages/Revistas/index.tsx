@@ -54,30 +54,19 @@ const Revista: React.FC = () => {
                 <br />
                 <br />
                 <Button variant="info" onClick={mostraRevistasFiccaoCientifica}>Filtrar pelo Gênero Ficção Ciêntifica</Button>
-                <Table striped bordered hover className="text-center">
-                <thead>
-                    <tr>
-                        <th>ID REVISTA</th>
-                        <th>NÚMERO REVISTA</th>
-                        <th>GENERO REVISTA</th>
-                    </tr>
-                </thead>
-                <tbody>
-
+            
                         {
                                 revista.map((revista)=> (
-                                <tr key={revista._idRevista}>
-                                    <td>{revista._idRevista}</td>
-                                    <td>{revista._numeroRevista}</td>
-                                    <td>{revista._generoRevista}</td>
-                                    <td>
+                                <ul key={revista._idRevista}>
+                                    <li>ID Revista: {revista._idRevista}</li> 
+                                    <li>Número da Revista: {revista._numeroRevista}</li>
+                                    <li>Gênero da Revista: {revista._generoRevista}</li>
+                                    <li>
                                         <Button size="sm" variant="info" onClick={() => viewRevista(revista._idRevista)}>Visualizar</Button>{' '}
-                                    </td>
-                                </tr>
+                                    </li>
+                                </ul>
                                  ))
                         }
-                    </tbody>
-                </Table>
              </div>
             )
 

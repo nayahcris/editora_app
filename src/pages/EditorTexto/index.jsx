@@ -1,16 +1,19 @@
 /* eslint-disable */
-import React from 'react'
+import React, {useEffect}from 'react'
+import { useParams } from 'react-router-dom' 
 import 'draft-js/dist/Draft.css'
 import {Editor, EditorState, RichUtils, getDefaultKeyBinding, convertFromRaw, convertToRaw} from 'draft-js'
 import { Button, Modal } from 'react-bootstrap'
 import { } from './index.css'
 import api from '../../services/api'
-//import IConto from '../../interfaces/IConto'
+
 
 class EditorTexto extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {editorState: EditorState.createEmpty()};
+    this.state = {editorState: EditorState.createEmpty(),
+                  _conteudo: ''};
+    
 
     this.focus = () => this.refs.editor.focus();
     this.onChange = (editorState) => this.setState({editorState});
@@ -19,6 +22,26 @@ class EditorTexto extends React.Component {
     this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
     this.toggleBlockType = this._toggleBlockType.bind(this);
     this.toggleInlineStyle = this._toggleInlineStyle.bind(this);
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  //rawDraftContentState = JSON.stringify( convertToRaw(this.state.editorState.getCurrentContent()) );
+ // conteudos = convertFromRaw( JSON.parse( rawDraftContentState) );
+
+
+  handleChange(event) {
+    this.setState({_conteudo: event.target.editorState});
+  }
+
+    
+  //NECESSITA DE AJUSTES MAS ESTÁ ENVIANDO EM FORMATO DE STRING
+  handleSubmit(event) {
+    alert('Um conteúdo foi enviado: ' +  JSON.stringify( convertToRaw(this.state.editorState.getCurrentContent()) ))
+        
+    event.preventDefault();
+    const response = api.put(`/contos/1`, "_conteudo", JSON.stringify( convertToRaw(this.state.editorState.getCurrentContent()) ))
   }
 
   _handleKeyCommand(command, editorState) {
@@ -66,9 +89,6 @@ class EditorTexto extends React.Component {
 
   render() {
     const {editorState} = this.state;
-
-    // If the user changes block type before entering any text, we can
-    // either style the placeholder or hide it. Let's just hide it now.
     let className = 'RichEditor-editor';
     var contentState = editorState.getCurrentContent();
     if (!contentState.hasText()) {
@@ -77,24 +97,11 @@ class EditorTexto extends React.Component {
       }
     }
     
-    
-    const rawDraftContentState = JSON.stringify( convertToRaw(this.state.editorState.getCurrentContent()) );
-    const conteudos = convertFromRaw( JSON.parse( rawDraftContentState) );
-
-    async function salvarTexto(){
-      const response = api.put(`/contos/1`, conteudos)
-      console.log(rawDraftContentState)
-      console.log(conteudos)
-      console.log(response)
-      }
       
    
       return (
-      <Modal.Dialog>
-            <Modal.Header closeButton>
-              <Modal.Title className="text-center">EDITOR DE TEXTO</Modal.Title>
-            </Modal.Header>
-            <Button onClick={salvarTexto}>Save</Button>
+      <div className="container">
+       <Button onClick={this.handleSubmit}>Salvar</Button>
       <div className="RichEditor-root">
         <BlockStyleControls
           editorState={editorState}
@@ -111,6 +118,8 @@ class EditorTexto extends React.Component {
             editorState={editorState}
             handleKeyCommand={this.handleKeyCommand}
             keyBindingFn={this.mapKeyToEditorCommand}
+            name="_conteudo"
+            value={this.state._conteudo}
             onChange={this.onChange}
             placeholder="Coloque o texo aqui..."
             ref="editor"
@@ -118,7 +127,7 @@ class EditorTexto extends React.Component {
           />
         </div>
       </div>
-      </Modal.Dialog>
+      </div>
     );
   }
 }
