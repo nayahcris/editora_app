@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom'
 import 'draft-js/dist/Draft.css'
 import {Editor, EditorState, RichUtils, getDefaultKeyBinding, convertFromRaw, convertToRaw} from 'draft-js'
 import { Button, Modal } from 'react-bootstrap'
-import { } from './index.css'
 import api from '../../services/api'
+import './index.css'
 
 
 class EditorTexto extends React.Component {
@@ -39,9 +39,10 @@ class EditorTexto extends React.Component {
   //NECESSITA DE AJUSTES MAS ESTÁ ENVIANDO EM FORMATO DE STRING
   handleSubmit(event) {
     alert('Um conteúdo foi enviado: ' +  JSON.stringify( convertToRaw(this.state.editorState.getCurrentContent()) ))
+    //alert(convertFromRaw( JSON.parse(JSON.stringify( convertToRaw(this.state.editorState.getCurrentContent())) )))
         
     event.preventDefault();
-    const response = api.put(`/contos/1`, "_conteudo", JSON.stringify( convertToRaw(this.state.editorState.getCurrentContent()) ))
+    const response = api.put(`/contos/1`, "_conteudo", convertFromRaw( JSON.parse(JSON.stringify( convertToRaw(this.state.editorState.getCurrentContent())) )))
   }
 
   _handleKeyCommand(command, editorState) {

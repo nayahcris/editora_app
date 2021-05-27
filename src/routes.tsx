@@ -15,7 +15,11 @@ import ReactArApp from './pages/WebAr'
 import EditorTexto from './pages/EditorTexto'
 import Editor from './pages/Editor'
 import ContosForm from './pages/Contos/FormConto'
+import HomeQrcode from './pages/Qrcode/index'
+import QRgenerator from './pages/Qrcode/QRgenerator'
+import QRscanner from './pages/Qrcode/QRscanner'
 import Task from './pages/Tasks/tasksform'
+
 
 
 
@@ -38,6 +42,9 @@ const Routes: React.FC = () => {
             <Route path="/editor-texto" component={EditorTexto} />  
             <Route path="/editores/:_idEditor" exact component={Editor} /> 
             <Route path="/contos-form" exact component={ContosForm}/>
+            <Route path="/qrcode" exact component={HomeQrcode} />
+            <Route path="/qr_generator" exact component={QRgenerator} />
+            <Route path="/qr_scanner" exact component={QRscanner} />
         </Switch>
     )
 }
