@@ -13,6 +13,7 @@ const Header: React.FC = () => {
             <Nav.Item as ={Link} className="nav-link" to ="/">Inicio</Nav.Item>
             <Nav.Item as ={Link} className="nav-link" to ="/contos">Contos</Nav.Item>
             <Nav.Item as={Link} className="nav-link" to ="/revistas">Revistas</Nav.Item>
+            <Nav.Item as={Link} className="nav-link" to ="/qr_scanner">Leitor de QRCODE</Nav.Item>
         </Nav>
         </Navbar.Collapse>
         </Navbar>

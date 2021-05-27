@@ -35,14 +35,14 @@ function QRscanner() {
                 />
             </div>
             </center>
-
+            <center>
             <TextareaAutosize
                 style={{fontSize:18, width:320, height:100, marginTop:100}}
                 rowsMax={4}
                 defaultValue={qrscan}
                 value={qrscan}
             />
-
+             </center>
       </div>
     );
   }

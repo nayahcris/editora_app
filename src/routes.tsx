@@ -18,6 +18,7 @@ import ContosForm from './pages/Contos/FormConto'
 import HomeQrcode from './pages/Qrcode/index'
 import QRgenerator from './pages/Qrcode/QRgenerator'
 import QRscanner from './pages/Qrcode/QRscanner'
+import QRCodeForm from './pages/Qrcode/QRcodeform'
 import Task from './pages/Tasks/tasksform'
 
 
@@ -45,6 +46,7 @@ const Routes: React.FC = () => {
             <Route path="/qrcode" exact component={HomeQrcode} />
             <Route path="/qr_generator" exact component={QRgenerator} />
             <Route path="/qr_scanner" exact component={QRscanner} />
+            <Route path="/qrcode-form" exact component={QRCodeForm} />
         </Switch>
     )
 }
