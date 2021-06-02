@@ -6,7 +6,7 @@ import api from '../../services/api'
 import IQRcodeForm from '../../interfaces/IQRcodeForm'
 
 
-const QRcodeForm: React.FC = () => {
+const RaForm: React.FC = () => {
 
     const history = useHistory()
     const { _idQRcode } = useParams<{ _idQRcode: string }>()
@@ -65,14 +65,14 @@ const QRcodeForm: React.FC = () => {
     return ( <div className="container">
     <br/>
     <div className="task-header">
-        <h3>Adicionar QrCode</h3>
+        <h3>Adicionar Elemento de Realidade Aumentada</h3>
         <Button variant="dark" size="sm" onClick={back}>Voltar</Button>
     </div>
     <br/>
     <div className="container">
         <Form onSubmit={onSubmit}>
             <Form.Group>
-                <Form.Label>Nome Referente ao QRCODE</Form.Label>
+                <Form.Label>Nome Referente ao Realidade Aumentada</Form.Label>
                 <Form.Control 
                     type="text" 
                     name="_nome"
@@ -90,7 +90,17 @@ const QRcodeForm: React.FC = () => {
                     onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} 
                 />
             </Form.Group>
-            <Button variant="dark">Insira o arquivo</Button>{ }
+            <Form.Group>
+                <Form.Control as="select">
+                    <option>Geométrico</option>
+                    <option>Elemento em 3D</option>
+                    <option>Vídeo</option>
+                 </Form.Control>
+            </Form.Group>
+            <Button type="file" variant="dark">Insira o arquivo do marcador</Button>{ }
+            <br />
+            <br />
+             <Button variant="dark">Insira o arquivo da Realidade Aumentada</Button>{ }
             <br />
             <br />
             <Button variant="dark" type="submit">
@@ -103,4 +113,4 @@ const QRcodeForm: React.FC = () => {
 );
 }
 
-export default QRcodeForm
+export default RaForm

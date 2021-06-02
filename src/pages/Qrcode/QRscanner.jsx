@@ -4,9 +4,10 @@ import {ArrowBack} from '@material-ui/icons'
 import { Link } from "react-router-dom";
 import QrScan from 'react-qr-reader'
 
+
 function QRscanner() {
 
-    const [qrscan, setQrscan] = useState('No result');
+    const [qrscan, setQrscan] = useState('Nenhum link adicionado');
     const handleScan = data => {
         if (data) {
             setQrscan(data)
@@ -17,13 +18,13 @@ function QRscanner() {
     }
 
     return (
-      <div>
+      <div className="container">
             <Link to="/">
             <Fab style={{marginRight:10}} color="primary">
                 <ArrowBack/>
             </Fab>
             </Link>
-            <span>QR Scanner</span>
+            <span>Scanner de QrCode</span>
             
             <center>
             <div style={{marginTop:30}}>

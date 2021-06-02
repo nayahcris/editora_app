@@ -14,11 +14,13 @@ import Conectese from './pages/Conectese'
 import ReactArApp from './pages/WebAr'
 import EditorTexto from './pages/EditorTexto'
 import Editor from './pages/Editor'
+import EditorForm from './pages/Editor/EditorForm'
 import ContosForm from './pages/Contos/FormConto'
 import HomeQrcode from './pages/Qrcode/index'
 import QRgenerator from './pages/Qrcode/QRgenerator'
 import QRscanner from './pages/Qrcode/QRscanner'
 import QRCodeForm from './pages/Qrcode/QRcodeform'
+import RaForm from './pages/Ra/ra-form'
 import Task from './pages/Tasks/tasksform'
 
 
@@ -47,6 +49,8 @@ const Routes: React.FC = () => {
             <Route path="/qr_generator" exact component={QRgenerator} />
             <Route path="/qr_scanner" exact component={QRscanner} />
             <Route path="/qrcode-form" exact component={QRCodeForm} />
+            <Route path="/ra-form" exact component={RaForm} />
+            <Route path="/editor-form" exact component={EditorForm} />
         </Switch>
     )
 }

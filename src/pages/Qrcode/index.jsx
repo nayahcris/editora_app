@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function HomeQR() {
 
     return (
-        <div>
+        <div className="container">
 
             <Typography style={{margin:30}} variant="h2">
             QRCODE

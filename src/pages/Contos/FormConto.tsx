@@ -70,7 +70,7 @@ const ContosForm: React.FC = () => {
         <div className="container">
             <br/>
             <div className="task-header">
-                <h3>New Task</h3>
+                <h3>Novo Conto</h3>
                 <Button variant="dark" size="sm" onClick={back}>Voltar</Button>
             </div>
             <br/>

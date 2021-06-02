@@ -23,17 +23,17 @@ function QRgenerator() {
     };
 
     return (
-      <div>
+      <div className="container">
             <Link to="/">
             <Fab style={{marginRight:10}} color="primary">
                 <ArrowBack/>
             </Fab>
             </Link>
-            <span>QR Generator</span>
+            <span>Gerador de QrCode</span>
             
             <div style={{marginTop:30}}>
                 <TextField onChange={handleChange} style={{width:320}}
-                value={qr} label="QR content" size="large" variant="outlined" color="primary" 
+                value={qr} label="Conteúdo do QrCode" size="large" variant="outlined" color="primary" 
                 />
             </div>
 
@@ -46,7 +46,7 @@ function QRgenerator() {
                         size={320}
                         includeMargin={true}
                     /> :
-                    <p>No QR code preview</p>
+                    <p>Nenhum QrCode Gerado</p>
                 }
             </div>
             <div>
